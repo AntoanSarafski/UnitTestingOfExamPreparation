@@ -30,6 +30,17 @@ namespace UniversityLibrary.Test
         {
             Assert.AreEqual(library.Catalogue.Count, 0);
         }
-        
+
+        [Test]
+        public void AddTextBookWorksCorrectly()
+        {
+            string result = library.AddTextBookToLibrary(textBook);
+            
+            Assert.AreEqual(1, textBook.InventoryNumber);
+            Assert.AreEqual(1, library.Catalogue.Count);
+            Assert.AreEqual(title, library.Catalogue[0].Title);
+            Assert.AreEqual(result, "Book: 1984 - 1\r\nCategory: Disthopy\r\nAuthor: George Orwell"); 
+        }
+
     }
 }
