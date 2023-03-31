@@ -8,11 +8,13 @@ namespace UniversityLibrary.Test
         private string author = "George Orwell";
         private string category = "Disthopy";
 
+        private UniversityLibrary library;
 
         [SetUp]
         public void Setup()
         {
             textBook = new TextBook(title, author, category);
+            library = new UniversityLibrary();
         }
 
         [Test]
@@ -22,5 +24,12 @@ namespace UniversityLibrary.Test
             Assert.AreEqual(textBook.Author, author);
             Assert.AreEqual(textBook.Title, title);
         }
+
+        [Test]
+        public void UniLibraryIsEmptyWhenNew()
+        {
+            Assert.AreEqual(library.Catalogue.Count, 0);
+        }
+        
     }
 }
