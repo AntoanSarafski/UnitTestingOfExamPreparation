@@ -1,6 +1,8 @@
 namespace UniversityLibrary.Test
 {
     using NUnit.Framework;
+    using System;
+
     public class Tests
     {
         private TextBook textBook;
@@ -23,12 +25,15 @@ namespace UniversityLibrary.Test
             Assert.AreEqual(textBook.Category, category);
             Assert.AreEqual(textBook.Author, author);
             Assert.AreEqual(textBook.Title, title);
+
+            Assert.AreEqual(textBook.Holder, null);
         }
 
         [Test]
         public void UniLibraryIsEmptyWhenNew()
         {
             Assert.AreEqual(library.Catalogue.Count, 0);
+            
         }
 
 
@@ -68,14 +73,15 @@ namespace UniversityLibrary.Test
             Assert.AreEqual(1, textBook.InventoryNumber);
             Assert.AreEqual(1, library.Catalogue.Count);
             Assert.AreEqual(title, library.Catalogue[0].Title);
-            Assert.AreEqual(result, "Book: 1984 - 1\r\nCategory: Disthopy\r\nAuthor: George Orwell"); 
+            Assert.AreEqual(result, $"Book: 1984 - 1{Environment.NewLine}Category: Disthopy{Environment.NewLine}Author: George Orwell"); 
         }
 
         [Test]  
         public void LoanTextBookTests()
         {
             library.AddTextBookToLibrary(textBook);
-            textBook.InventoryNumber = 1;
+            Assert.AreEqual(textBook.Holder, null);
+
             string result = library.LoanTextBook(1, "Ady");
 
             Assert.AreEqual(textBook.Holder, "Ady");
