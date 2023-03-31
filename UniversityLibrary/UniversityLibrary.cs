@@ -8,17 +8,17 @@
 
         public UniversityLibrary()
         {
-            this.textBooks = new List<TextBook>();
+            this.textBooks = new List<TextBook>(); // We must test this inizilation.
         }
 
-        public List<TextBook> Catalogue => this.textBooks;
+        public List<TextBook> Catalogue => this.textBooks; // We must test this Catalogue and correct returned textBook.
 
         public string AddTextBookToLibrary(TextBook textBook)
         {
-            textBook.InventoryNumber = textBooks.Count + 1;
-            this.textBooks.Add(textBook);
+            textBook.InventoryNumber = textBooks.Count + 1; // We need single test for this counter ! 
+            this.textBooks.Add(textBook); //We need test adding textbook to Library.
 
-            return textBook.ToString();
+            return textBook.ToString(); // We need to testing this return and the returned string.
         }
 
         public string LoanTextBook(int bookInventoryNumber, string studentName)
