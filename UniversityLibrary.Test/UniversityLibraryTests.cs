@@ -31,6 +31,35 @@ namespace UniversityLibrary.Test
             Assert.AreEqual(library.Catalogue.Count, 0);
         }
 
+
+        [Test]
+        public void ReturnAndLoanThrowErrorWhenTextBookNotFound()
+        {
+            Assert.Throws<System.NullReferenceException>(() =>
+            {
+                library.LoanTextBook(88, "Empty");
+
+            });
+            Assert.Throws<System.NullReferenceException>(() =>
+            {
+                library.ReturnTextBook(88);
+
+            });
+
+        }
+
+        [Test]
+        public void AddTextBookCounterWorksCorrectly()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                library.AddTextBookToLibrary(textBook);
+            }
+            string result = library.AddTextBookToLibrary(textBook);
+            Assert.AreEqual(11, textBook.InventoryNumber);
+        }
+
+
         [Test]
         public void AddTextBookWorksCorrectly()
         {
