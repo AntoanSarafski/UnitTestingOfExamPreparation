@@ -42,5 +42,32 @@ namespace UniversityLibrary.Test
             Assert.AreEqual(result, "Book: 1984 - 1\r\nCategory: Disthopy\r\nAuthor: George Orwell"); 
         }
 
+        [Test]  
+        public void LoanTextBookTests()
+        {
+            library.AddTextBookToLibrary(textBook);
+            textBook.InventoryNumber = 1;
+            string result = library.LoanTextBook(1, "Ady");
+
+            Assert.AreEqual(textBook.Holder, "Ady");
+            Assert.AreEqual(result, $"{textBook.Title} loaned to Ady.");
+
+            result = library.LoanTextBook(1, "Ady");
+            Assert.AreEqual(result, $"Ady still hasn't returned {textBook.Title}!");
+        }
+
+        [Test]  
+        public void ReturnInventoryBookTests()
+        {
+
+            library.AddTextBookToLibrary(textBook);
+            string result = library.LoanTextBook(1, "Ady");
+
+            result = library.ReturnTextBook(1);
+            
+
+            Assert.AreEqual(textBook.Holder, string.Empty);
+            Assert.AreEqual(result, $"{textBook.Title} is returned to the library.");
+        }
     }
 }
